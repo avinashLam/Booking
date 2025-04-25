@@ -1,0 +1,13 @@
+spring:
+  mail:
+    host: smtp.mail.com  # make sure the host is correct
+    port: 587
+    username: avinash.lam12345@gmail.com
+    password: wczc ickd woal lqru
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+

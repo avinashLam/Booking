@@ -28,4 +28,11 @@ public class Exceptions {
 
     }
 
+//    @ExceptionHandler(EmailException.class)
+//    public ResponseEntity<EmailException> emailExceptionResponseEntity(EmailException e){
+//        String s="Email Exception";
+//        EmailException emailException=new EmailException(s);
+//        return new ResponseEntity<>(emailException,HttpStatus.NOT_FOUND);
+//    }
+
 }
