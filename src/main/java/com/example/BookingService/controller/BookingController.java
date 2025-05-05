@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -141,5 +142,33 @@ public class BookingController {
 
         return ResponseEntity.status(200).body(booking1);
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<?> getBookingByIdAndName(@RequestParam("bookingId") Integer bookingId,
+                                                   @RequestParam("name") String name) {
+        Booking booking = bookingService.getBookingByIdAndName(bookingId, name);
+
+        if (booking == null) {
+            return ResponseEntity.status(404).body("Booking not found");
+        }
+
+        return ResponseEntity.status(200).body(booking);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Booking>> getaAll(){
+        List<Booking> bookingList=bookingService.getAll();
+
+            return ResponseEntity.status(200).body(bookingList);
+
+    }
+
+    @GetMapping("/bookings")
+    public Page<Booking> getBookings(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        return bookingService.getBookingsWithPagination(page, size);
+    }
+
 
 }

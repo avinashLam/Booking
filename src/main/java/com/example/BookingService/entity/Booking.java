@@ -1,6 +1,7 @@
 package com.example.BookingService.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,35 +13,33 @@ import java.util.Date;
 
 @Entity
 public class Booking {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer BookingId;
-    @NonNull
-    private String name;
-    @NonNull
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "booking_id", nullable = false)
+
+    private Integer bookingId; // Entity field in camelCase
+
+    @NonNull
+    @Column(name = "name")
+    private String name;
+
+    @NonNull
     private double price;
 
     private String email;
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     @NonNull
-@JsonFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private Date date;
 
-    public int getBookingId() {
-        return BookingId;
+    // Getters and Setters
+    public Integer getBookingId() {
+        return bookingId;
     }
 
-    public void setBookingId(int bookingId) {
-        BookingId = bookingId;
+    public void setBookingId(Integer bookingId) {
+        this.bookingId = bookingId;
     }
 
     public String getName() {
@@ -59,13 +58,19 @@ public class Booking {
         this.price = price;
     }
 
-
-
     public Date getDate() {
         return date;
     }
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
