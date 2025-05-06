@@ -1,6 +1,7 @@
 package com.example.BookingService.service;
 
 import com.example.BookingService.entity.Booking;
+import com.example.BookingService.entity.Person;
 import com.example.BookingService.exception.CustomIdNotFound;
 
 import com.example.BookingService.repository.BookingRepository;
@@ -121,4 +122,10 @@ public class BookingService {
         return bookingRepository.findAll(pageable);
     }
 
+    public Booking create(Booking booking) {
+        for (Person person : booking.getPersonList()) {
+            person.setBooking(booking); // Important: Set the back-reference
+        }
+        return bookingRepository.save(booking);
+    }
 }

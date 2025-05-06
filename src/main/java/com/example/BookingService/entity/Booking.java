@@ -1,15 +1,13 @@
 package com.example.BookingService.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Booking {
@@ -33,6 +31,9 @@ public class Booking {
     @JsonFormat(pattern = "dd-MM-yyyy")
     private Date date;
 
+    @OneToMany(mappedBy = "booking",cascade=CascadeType.ALL)
+    List<Person> personList=new ArrayList<>();
+
     // Getters and Setters
     public Integer getBookingId() {
         return bookingId;
@@ -44,6 +45,14 @@ public class Booking {
 
     public String getName() {
         return name;
+    }
+
+    public List<Person> getPersonList() {
+        return personList;
+    }
+
+    public void setPersonList(List<Person> personList) {
+        this.personList = personList;
     }
 
     public void setName(String name) {

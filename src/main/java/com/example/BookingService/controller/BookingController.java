@@ -170,5 +170,11 @@ public class BookingController {
         return bookingService.getBookingsWithPagination(page, size);
     }
 
+    @PostMapping("/one")
+    public ResponseEntity<Booking> post(@RequestBody Booking booking){
+        Booking b1=bookingService.create(booking);
+        return ResponseEntity.ok(b1);
+    }
+
 
 }
