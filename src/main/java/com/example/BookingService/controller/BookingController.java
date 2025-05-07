@@ -175,6 +175,10 @@ public class BookingController {
         Booking b1=bookingService.create(booking);
         return ResponseEntity.ok(b1);
     }
+    @GetMapping("/alls")
+    public List<Booking> getAll(){
+        return bookingService.bookingList();
+    }
 
 
 }

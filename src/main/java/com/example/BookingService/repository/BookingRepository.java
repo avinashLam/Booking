@@ -22,5 +22,7 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
 
     Page<Booking> findAll(Pageable pageable);
     List<Booking> findAll(Sort sort);
+    @Query("SELECT b FROM Booking b JOIN FETCH b.personList")
+    List<Booking> findAllBookingsWithPersons();
 
 }

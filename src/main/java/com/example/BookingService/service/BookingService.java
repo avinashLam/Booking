@@ -128,4 +128,7 @@ public class BookingService {
         }
         return bookingRepository.save(booking);
     }
+    public List<Booking> bookingList(){
+        return bookingRepository.findAllBookingsWithPersons();
+    }
 }
